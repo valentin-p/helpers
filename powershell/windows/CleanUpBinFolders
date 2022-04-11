@@ -1,0 +1,11 @@
+# Open a PowerShell terminal in the solution's folder, close VS.
+Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { Remove-Item $_.fullname -Force -Recurse }
+Remove-Item "packages\*" -Force -Recurse
+Remove-Item ".vs\*" -Force -Recurse
+
+# Open the solution in new VS window then open the Package Manager Console.
+Update-Package Microsoft.Net.Compilers -r
+Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
+* Rollback any git changes that occurred during this steps.
+* Set the web app project as Startup project.
+* Use Ctrl+F5 to build and launch the app without debugger.
